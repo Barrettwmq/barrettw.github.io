@@ -18,7 +18,7 @@
                 padding: 0;
                 text-align: center;
                 background-color: beige;
-                font-size: 50px;
+                font-size: 55px;
             }
 
             #top-bar{
@@ -34,12 +34,17 @@
                 display: inline-block;
                 text-decoration: none;
                 padding-left: 5px;
+                color: gray;
 
             }
 
             .contact a{
                 text-decoration: none;
                 color: inherit;
+            }
+
+            .contact #resume_link:hover{
+                cursor: pointer;
             }
 
             h1{
@@ -73,20 +78,18 @@
     <body>
         <div id="info">
             <div id="top-bar">
-                <div class="contact">DOB: 2002-08-14</div>
+                <div class="contact">School: University of Southern California </div>
                 <div class="contact"><p>Tel: 213-421-7427</p></div>
                 <div class="contact"><p>Email:<a href="mailto:mwang424@usc.edu">mwang424@usc.edu</a></p></div>
+                <div class="contact"><p id="resume_link" style="border: 1px solid black;">Resume: Click Me!</p></div>
             </div>
-
+            
             <div class="name" style="display: inline-block;"><h1>Barrett </h1></div>
             <div class="name2" style="display: inline-block;"><h1 name="trigger">(Mengqi) </h1></div>
             <div class="name" style="display: inline-block;"><h1>Wang</h1></div>
             <br>
             <div id="sc_header">
-                <img src="Pics/sc.png" alt="sc_logo">
-            </div>
-            <div class="info_image">
-                <h1 style="font-size: 130px;">💻</h1>
+                <img src="sc.png" alt="sc_logo">
             </div>
 
             <div class="info_image">
@@ -108,9 +111,31 @@
             <div class="info_image">
                 <h1 style="font-size: 130px;">🏇</h1>
             </div>
+
+            <div class="info_image">
+                <h1 style="font-size: 130px;">🥊</h1>
+            </div>
+        </div>
+
+        <div id="main_page">
+            <div class="my_img" style="display: inline-block; margin: 30px 10px; opacity: 0;"><img src="Pics/me.png" alt="me" style="width: auto; height: 300px;"></div>
+            <div class="my_img" style="display: inline-block; margin: 30px 10px; opacity: 0;"><img src="Pics/me2.png" alt="me2" style="width: auto; height: 300px;"></div>
+            <br>
+            <div id="intro" style="display:flex; align-content: center; justify-content: center; opacity: 0;">
+                <p style="margin: 20px 70px;">Hi, welcome to my page! This is Barrett, a senior student at the University of Southern California majoring in Computer Science and Applied Math. I was born in Qingdao, China, a beautiful coastal city in Shandong Province, which is famous for the Tsingdao Beer🍺. With much talent in sports, I played basketball since I was 5 years old and played half-professionally back in high school in China. Other than that, I did equestrianism, swim, football, etc when I was in middle school.<br> <br>
+                My expertise includes Python, C++, Java, HTML, CSS, Javascript, SQL, and machine learning. My research interests are speech recognition, natural language processing (NLP), LLM. I spent the summer 2024 doing research in the SAIL lab at USC and was fortunately mentored by Tiantian Feng (Ph.D.) and Prof. Shrikanth Narayanan, a globally well-known scientist in speech recognition and signal processing (Really appreciate their help!). My focus was exploring the prompt techniques to improve the accuracy of the emotion prediction by LLMs. <br><br>
+                I had an internship in Guotai Junan in summer 2022 remotely due to the lockdown in Shanghai as a data analyst. My job was to assist the manager to preprocess the stock data every day and calculate a series of data, such as annual stock yields, volatility, Sharpe ratio, etc. Moreover, I finished a research report about the summary of market value and stock prediction of all the chip supplier companies for Apple Inc. in A-share in China independently. During my school semester, I worked as a course producer in CSCI 170 (Discrete Methods in Computer Science) with Prof. Shahriar Shamsian and CSCI 270 (Introduction to Algorithms and the Theory of Computing) with Prof. David Kempe. Currently, I am looking forward to devote my knowledge and passion to the AI industry!
+                </p>
+            </div>
+            <div>
         </div>
 
         <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                document.getElementById("resume_link").addEventListener("click", function(){
+                    window.location.href = 'Mengqi_Wang_Resume.pdf';
+                });
+            });
             gsap.fromTo(".name", 
                 { 
                     opacity: 0,
@@ -151,6 +176,34 @@
                     }
                 }
             );
+
+            const observerOptions = {
+                root: null,
+                threshold: 0.95 
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        gsap.to(".my_img", {
+                            opacity:1,
+                            duration:3,
+                            x:350,
+                            ease: "power2.out"
+                        });
+
+                        gsap.to("#intro", {
+                            opacity:1,
+                            duration:4,
+                            ease:"power2.out"
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            observer.observe(document.querySelector("#main_page"));
+            
         </script>
     </body>
 </html>
