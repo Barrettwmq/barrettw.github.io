@@ -5,13 +5,20 @@
         <title>Barrett Wang Homepage</title>
 
         <style>
+            @font-face {
+                font-family: 'Title';
+                src: url('Fonts/LilitaOne-Regular.ttf');
+                font-weight: normal;
+                font-style: normal;
+            }
+
             #info{
                 width: 100%;
                 height: 600px;
                 padding: 0;
                 text-align: center;
-                background-color: #f7e948;
-                font-size: 40px;
+                background-color: beige;
+                font-size: 50px;
             }
 
             #top-bar{
@@ -37,9 +44,31 @@
 
             h1{
                 margin: 0;
-                padding-top: 150px;
+                padding-top: 0;
+                font-family: 'Title';
             }
+
+            .info_image{
+                display:inline-block; 
+                position: relative; 
+                top: 150px;
+                margin: 20px;
+                opacity: 0;
+                height: 175px;
+            }
+
+            #sc_header img{
+                height: 30px;
+                width: auto;
+                position: absolute;
+                top: 27px;
+                left: 8px;
+                background: transparent;
+            }
+
         </style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js">
+        </script>
     </head>
     <body>
         <div id="info">
@@ -48,7 +77,80 @@
                 <div class="contact"><p>Tel: 213-421-7427</p></div>
                 <div class="contact"><p>Email:<a href="mailto:mwang424@usc.edu">mwang424@usc.edu</a></p></div>
             </div>
-            <h1>Barrett (Mengqi) Wang</h1>
+
+            <div class="name" style="display: inline-block;"><h1>Barrett </h1></div>
+            <div class="name2" style="display: inline-block;"><h1 name="trigger">(Mengqi) </h1></div>
+            <div class="name" style="display: inline-block;"><h1>Wang</h1></div>
+            <br>
+            <div id="sc_header">
+                <img src="Pics/sc.png" alt="sc_logo">
+            </div>
+            <div class="info_image">
+                <h1 style="font-size: 130px;">💻</h1>
+            </div>
+
+            <div class="info_image">
+                <h1 style="font-size: 130px;">🏀</h1>
+            </div>
+
+            <div class="info_image">
+                <h1 style="font-size: 130px;">🏈</h1>
+            </div>
+
+            <div class="info_image">
+                <h1 style="font-size: 130px;">🏊🏻</h1>
+            </div>
+
+            <div class="info_image">
+                <h1 style="font-size: 130px;">🏃</h1>
+            </div>
+
+            <div class="info_image">
+                <h1 style="font-size: 130px;">🏇</h1>
+            </div>
         </div>
+
+        <script>
+            gsap.fromTo(".name", 
+                { 
+                    opacity: 0,
+                    rotation: 0
+                }, 
+                { 
+                    duration: 1.5, 
+                    opacity: 1, 
+                    rotation: 360,
+                    stagger: 0.3,
+                    ease: "power2.out",
+                    y:100
+                }
+            );
+            gsap.fromTo(".name2", 
+                { 
+                    opacity: 0,
+                    rotation: 0,
+                    y:700
+                }, 
+                { 
+                    duration: 1.5, 
+                    opacity: 1, 
+                    rotation: -360,
+                    stagger: 0.3,
+                    ease: "power2.out",
+                    y:100,
+                    onComplete: function(){
+
+                        gsap.to(".info_image", 
+                            {
+                                duration:3,
+                                opacity:1,
+                                stagger:1,
+                                ease: "power2.out"
+                            }
+                        );   
+                    }
+                }
+            );
+        </script>
     </body>
 </html>
