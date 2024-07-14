@@ -82,6 +82,41 @@
                 cursor: pointer;
             }
 
+            #caption1{
+                background-color: rgba(0,0,0,0.6); 
+                width:450px; 
+                height:300px; 
+                position: absolute; 
+                top: 0; 
+                left: 0; 
+                justify-content: center; 
+                align-content: center; 
+                text-align: center; 
+                color:white;
+                visibility: hidden;
+            }
+
+            #caption2{
+                background-color: rgba(0,0,0,0.6); 
+                width:100%; 
+                height:100%; 
+                position: absolute; 
+                top: 0; 
+                left: 0; 
+                justify-content: center; 
+                align-content: center; 
+                text-align: center; 
+                color:white;
+                visibility: hidden;
+            }
+
+            #img1:hover, #img2:hover{
+                opacity: 0.5;
+            }
+            #img1:hover #caption1, #img2:hover #caption2{
+                visibility: visible;
+            }
+
         </style>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js">
         </script>
@@ -128,8 +163,16 @@
             </div>
         </div>
 
-        <div class="my_img" style="display: inline-block; margin: 30px 10px; opacity: 0;"><img src="Pics/me.png" alt="me" style="width: auto; height: 300px;"></div>
-        <div class="my_img" style="display: inline-block; margin: 30px 10px; opacity: 0;"><img src="Pics/me2.png" alt="me2" style="width: auto; height: 300px;"></div>
+        <div class="my_img" id="img1" style="display: inline-block; margin: 30px 10px; opacity: 0; position: relative; width: 460px; height: auto;">
+            <img src="Pics/me.png" alt="me" style="width: auto; height: 300px;">
+            <div id="caption1">The birthday picture for my 21st birthday🎉.</div>
+        </div>
+        
+        
+        <div class="my_img" id="img2" style="display: inline-block; margin: 30px 10px; opacity: 0;">
+            <img src="Pics/me2.png" alt="me2" style="width: auto; height: 300px;">
+            <div id="caption2">Try to get back to the vertical jump I had in high school...</div>
+        </div>
         <br>
 
         <div class= "Intro" id="main_page" style="opacity: 0;">
@@ -201,8 +244,7 @@
                 }
             );
 
-            document.addEventListener("DOMContentLoaded", function() {
-                const introSection = document.querySelectorAll(".my_img");
+            const introSection = document.querySelectorAll(".my_img");
                 const introObserverOptions = {
                     root: null,
                     threshold: 0.9
@@ -234,10 +276,7 @@
                     introObserver.observe(section);
                 });
 
-
-
-
-
+            document.addEventListener("DOMContentLoaded", function() {
                 const sections = document.querySelectorAll(".options");
                 const observerOptions = {
                     root: null,
